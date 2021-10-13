@@ -1,0 +1,93 @@
+<DOCTYPE html>
+  <html lang="en">
+    <head>
+      <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script type="text/javascript">
+        window.onload = function () {
+            $.get("/login", function (data) {
+                var UI = document.querySelector(".userInfo");
+                alert(`Hello ${data.usr}! You are logged in!`);
+                UI.innerHTML = `User Heirarchy: ${data.hr}<br>
+                                User position: ${data.pos}<br>
+                                Floor: ${data.flr}<br>
+                                User Group: ${data.grp}<br>
+                                Contact Number: ${data.no}<br>
+                                Email Address: ${data.email}`;
+            });
+        };
+      </script>
+      <style>
+        body {
+          background: url("/imgs/bo-kaap.jpeg");
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-color: black;
+        }
+        #logo {
+          width: fit-content;
+          background-color: white;
+          display: flex;
+          flex-direction: row-reverse;
+          opacity: 70%;
+          border-radius: 5%;
+        }
+
+        .block {
+          padding: 30px;
+          color: darkgreen;
+          background-color: rgb(255, 255, 255, 0.7);
+          border-radius: 1em;
+        }
+
+        .container {
+          height: 80vh;
+        }
+      </style>
+    </head>
+    <body class="bg-warning">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Younglings_Members</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="/editProfile">Edit Personal Profile</a></li>
+            <li><a href="/download">Hand In Task</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="logo" class="block">
+        <!--<img
+          src="data:image/png;base64,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"
+          class="bg"
+        />-->
+      </div>
+      <br /><br />
+      <div
+        class="
+          container
+          d-flex
+          justify-content-evenly justify-content-center
+          align-items-center
+          flex-column
+          bg-secondary
+        "
+      >
+        <div id="user-info" class="block">
+          <h1>user-info:</h1>
+          <h2 class="userInfo"></h2>
+        </div>
+        <br /><br />
+        <div id="announcements" class="block">
+          <h1>announcements</h1>
+        </div>
+      </div>
+    </body>
+  </html></DOCTYPE
+>
