@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            <script>
+                function searchClient(){
+                    $.get("/search", function( data ){
+                        inptName.value=data.usr;
+                        searchPswd.value=data.pswd;
+                        if (data.admin=="Yes"){
+                            inptAdmin.checked=true;
+                        }else{
+                            inptAdmin.checked=false;
+                        };
+                        inptFloor.value = data.flr;
+                        inptTeam.value = data.grp;
+                        inptPos.value = data.pos;
+                        inptHR.value = data.hr;
+                    }); 
+                };
+            </script>
+            <style>
+                body{
+                        background: url('https://velvetescape.com/wp-content/uploads/2013/02/IMG_6931.jpeg');
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        width:100%;
+                        max-width: 100%;                   
+                    }
+
+                    #logo{
+                        width: 100%;
+                        background-color: white;
+                        height: 10em;
+                        display: flex;
+                    }
+                    
+                    .admin2{
+                        
+                        background-color:rgba(255, 255, 255,0.8);
+                        
+                    }
+
+                    section{
+                        margin-bottom: 5em;
+                    }     
+            </style>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        </head> 
+        <body style="z-index:0;">
+            <div id="logo" class="d-flex justify-content-between">
+                <div class="row align-items-center justify-content-center">
+                <div class="col mw-30 px-lg-5">
+                    <button type="button" class="btn bg-success text-light " data-toggle="collapse" data-target=".multi" onclick="display" style="height:3.3em; width: 7em;">Add User</button>
+                </div>
+                <div class="col mw-30 px-lg-5">
+                    <button type="button" class="col btn btn-secondary bg-success text-light" data-toggle="collapse"  data-target=".multi3" onclick="display" style="height:3.3em; width: 7em;">Delete User</button>
+                </div>
+                <div  class="col mw-30 px-lg-5">
+                    <button type="button" class="btn bg-success text-light" data-toggle="collapse" data-target=".multi2" onclick="display" style="height:3.3em; width: 7em;">Edit User</button>
+                </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                <img src="data:image/png;base64,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" class="bg">
+                </div>
+            </div>
+
+            <div class="d-flex flex-column">
+                <br/><br/><br/>
+                <div class="collapse multi multi2 multi3 " style="position:fixed; z-index:1; height:100%; width:100%; background-color:grey"></div>
+                <section class="collapse admin2 d-flex justify-content-center flex-column p-5 container" style="z-index:2;">
+                    <div class="d-flex justify-content-center">
+                    <h1 class="text-success" style="margin-bottom: 1em;">YOUNGLINGS ADMIN DATABASE: EDITOR</h1>
+                    </div>
+                    <!-- Search form -->
+                    <div class="searchFrm" id="form1">
+                        <h1 class="collapse multi2 homeScreen text-success">SEARCH USER DATABASE</h1>
+                        <h1 class="collapse multi3 homeScreen text-success">SEARCH AND DELETE USER</h1>
+                        <form action="/delete" method="post" class="collapse text-success multi3">
+                            <div id="logins" placeholder="Username"><label>Search by username:  </label><br><input type="text" class="name"  name="search" required></div><br>
+                            <input type="submit" value="Delete" class="btn btn-color-success bg-success text-light btnSearch" onClick="searchClient()"/>
+                        </form>
+                        <form action="/search" method="post" class="collapse text-success multi2">
+                            <div id="logins" placeholder="Username"><label>Search by username:  </label><br><input type="text" class="name"  name="search" required></div><br>
+                            <input type="submit" value="Search" class="btn btn-color-success bg-success text-light btnSearch" onClick="searchClient()"/>
+                        </form>
+                    </div>
+                    <div class="collapse editFrm multi multi2 text-success" id="form2">
+                        <h1 class="collapse homeScreen multi"> ADD NEW USER</h1>
+                        <h1 class="collapse homeScreen multi2"> EDIT NEW USER</h1>
+                        <form action="/addUser" method="post" class="text-success">
+                            <div id="logins" class="name"><label>Name: </label><br><input class="sName" name="sName" type="text"  placeholder="Enter name"></div>
+                            <div id="logins" class="sname"><label>Surname: </label><br><input class="sSname" name="sSname" type="text" placeholder="Enter surname"></div> <br>
+                            <div id="logins" class="contactCell"><label>Phone Number: </label><br><input class="sPhone" name="sPhone" type="text" placeholder="Enter contact numbwer"></div> <br>
+                            <div id="logins" class="contactEmail"><label>Email: </label><br><input class="sEmail" name="sEmail" type="text" placeholder="Enter email address"></div> <br>
+                            <div id="logins" class="admn" name="admn"><label>Administrator: </label><input class="sAdmin" name="sAdmin" type="checkbox"></div><br>
+                            <label>Enter floor No: </label>
+                            <input list="flr" name="floor" class="floor" placeholder="Choose an option"/></label>
+                            <datalist id="flr">
+                                <option value="Floor 3"></option>
+                                <option value="Floor 4"></option>
+                            </datalist><br><br>
+                            <label for="hierarchy">Hierarchy:</label>
+                            <input list="hr" name="hierarchy" class="hierarchy" placeholder="Choose an option"/></label>
+                            <datalist id="hr">
+                                <option value="Supervisor"></option>
+                                <option value="Mentor"></option>
+                                <option value="Mentee"></option>
+                            </datalist><br><br>
+                            <label for="team">Team:</label>
+                            <input list="gr" name="team" class="team" placeholder="Choose an option"/></label>
+                            <datalist id="gr">
+                                <option value="Orc-Dragons"></option>
+                                <option value="Undead-Mages"></option>
+                                <option value="Viking-Knights"></option>
+                                <option value="Alien-Ninjas"></option>
+                                <option value="Samuraiz-Reapers"></option>
+                            </datalist><br><br>
+                            <label for="pos">Position:</label>
+                            <input list="pos"  name="pos"  class="pos" placeholder="Choose an option"/></label>
+                            <datalist id="pos">
+                                <option value="Web Developer"></option>
+                                <option value="Mobile Developer"></option>
+                                <option value="Back-end Developer"></option>
+                                <option value="UI/UX Designer"></option>
+                                <option value="Fullstack Developer"></option>
+                                <option value="Data Science Engineer"></option><!--onclick="window.location.href='/update';"  -->
+                            </datalist><br><br>
+                            <input type="submit" value="ADD USER" class="collapse btn btnAdd multi text-light bg-success" onclick="auth()"><!--onclick="window.location.href='/update';"-->
+                            <input class="collapse btn btnEdit multi2 text-light bg-success" type="submit" value="APPLY CHANGES" onClick="popUp"> 
+                        </form>
+                    </div>
+                </section>
+            </div>
+            <script type="text/javascript">
+                var slct = document.querySelector(".admin2");
+                var btnSearch=document.querySelector(".btnSearch");
+                var btnEdit=document.querySelector(".btnEdit");
+                var admin2=document.getElementsByClassName("admin2");
+                var inptName=document.querySelector(".sName");
+                var inptPswd=document.querySelector(".Pswd");
+                var inptAdmin=document.querySelector(".sAdmin");
+                var inptFloor=document.querySelector(".floor");
+                var inptHR=document.querySelector(".hierarchy");
+                var inptTeam=document.querySelector(".team");
+                var inptPos=document.querySelector(".pos");
+
+                function auth(name, pswd, admin, floor, hier, team, pos) {
+                    var count=0
+                    var capitalCount=0
+                        for(let i=0; i < name.length; i++){
+                            if (!/[^a-zA-Z]/.test(name)){
+                                count+=1;
+                                if(!/[a-z]/.test(name[i]) && /[A-Z]/.test(name[i])){ 
+                                    capitalCount+=1;   
+                                };
+                            };
+                        };
+                        if (capitalCount<2){
+                            count+=1;
+                        }
+                        if ((pswd[0,4]=="young") && (pswd[5,8].match(/^[0-9]+$/) != null)){
+                            count+=1;
+                        } else {
+                            alert("Incorrect! Password format")
+                        };
+                        if ((floor=="Floor 3") || (floor=="Floor 4")){
+                            count+=1;
+                        } else {
+                            alert("Incorrect floor entry: option not selected")
+                        };
+                        if ((hier=="Supervisor") || (hier=="Mentor") || (hier=="Mentee")){
+                            count+=1;
+                        } else {
+                            alert("Incorrect floor entry: option not selected")
+                        };
+                        if ((team=="Orc-Dragons") || (team=="Undead-Mages") || (team=="Viking-Knights") || (team=="Alien-Ninjas") || (team=="Samuraiz-Reapers")){
+                            count+=1;
+                        } else {
+                            alert("Incorrect floor entry: option not selected")
+                        };
+                        if ((pos=="Web Developer") || (pos=="Mobile Developer") || (pos=="Back-end Developer") || (pos=="UI/UX Designer") || (pos=="Fullstack Developer") || (pos=="Data Science Engineer")){
+                            count+=1;
+                        } else {
+                            alert("Incorrect floor entry: option not selected")
+                        };
+                        if (count==7){
+                            alert("User info: CORRECT!");
+                        } else {
+                            alert("User info: INCORRECT! User information invalid.")
+                        }
+                    
+                }
+
+                btnSearch.addEventListener.onclick=function(){
+                    $.get("/search", function( data ){
+                        inptName.value=data.usr;
+                        searchPswd.value=data.pswd;
+                        if (data.admin=="Yes"){
+                            inptAdmin.checked=true;
+                        }else{
+                            inptAdmin.checked=false;
+                        };
+                        inptFloor.value = data.flr;
+                        inptTeam.value = data.grp;
+                        inptPos.value = data.pos;
+                        inptHR.value = data.hr;
+                    }); 
+                };
+            </script>
+        </body>
+    </html>

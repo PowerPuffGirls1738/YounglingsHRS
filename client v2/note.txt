@@ -1,0 +1,42 @@
+HUMAN RESOURCE SYSTEM
+MINUTES AND AGENDA
+ 
+Prepared for:
+Younglings
+
+Prepared by:
+Power Puff Girl
+
+1ST MEETING MINUTES
+
+Opening:
+
+Called to order: Monday 11/10/2021 10:30 AM
+Meeting Venue: Bo-Kaap 3rd floor
+Called to order by: Rayaan Karlie(Project Manager)
+
+Present:
+ All members were present at the time of meeting.
+
+Absent:
+No members were absent at the time of meeting.
+
+New Business:
+Finding a solution to the provided problem, which was finding a more effective employee documentation system. Dividing tasks for documentation the first day . Discussing the objectives and deliverables of needed for our solution.
+
+Agenda Additions:
+Project time-table, roadmap, time management system and trello task management integration. As well as devision of tasks for the next day.
+
+Rayaan: Our first meeting is in session.
+Scott: I would champion a discussion on the project time table as wll as the division of tasks.
+Arthur: Okay I will setup trello.
+Shane: I shall construct a roadmap while Arthur does that.
+Rayaan: That all goes on the business document.
+Shane: What are our deliverables?
+Arthur:  Dashboard, database editor, user adder, database searcher, document handler, covid form and login screen.
+
+
+Adjournment:
+Adjourned by: Rayaan Karlie(Project Manager)
+Next meeting time: Monday 12/10/2021 11:00 AM
+Next meeting venue: Bo-Kaap 3rd floor
